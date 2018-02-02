@@ -1,7 +1,7 @@
 <?php
 /*
 * Plugin Name: Remove Footer Credit
-* Version: 1.0
+* Version: 1.1
 * Description: A simple plugin to remove footer credits
 * Author: Macho Themes
 * Author URI: https://www.machothemes.com/
@@ -90,7 +90,7 @@ class RFC_Plugin {
 		global $post;
 		$data = get_option( 'jabrfc_text' );
 		if ( $data['willLinkback'] == 'yes' && is_singular() && $data['linkbackPostId'] == $post->ID ) {
-			$content = $content . 'Get WordPress help, plugins, themes and tips at <a href="https://www.machothemes.com">MachoThemes.com</a>';
+			$content = $content . 'Get WordPress help, plugins, themes and tips at <a href="https://www.machothemes.com?utm_source=remove-footer-credit&utm_medium=front&utm_campaign=credit-link">MachoThemes.com</a>';
 		}
 		return $content;
 	}
@@ -144,7 +144,14 @@ class RFC_Plugin {
 		}
 
 		echo '<div class="wrap">';
+		echo '<div class="about-wrap epsilon-wrap">';
 		echo '<h1>' . esc_html__( 'Remove Footer Credit', 'remove-footer-credit' ) . '</h1>';
+		echo '<div class="about-text">';
+				/* Translators: Welcome Screen Description. */
+				echo esc_html__( 'Remove or replace footer credits (or any text or HTML in page) before page is rendered. With this plugin there is no need to modify code such as footer.php which if done incorrectly can cause your site to break or new theme updates will stomp over your changes requiring you to remove footer credits on each update.', 'remove-footer-credit' );
+			echo '</div>';
+		echo '<div class="wp-badge remove-footer-credit"><span class="dashicons dashicons-editor-unlink"></span></div>';
+		echo '</div>';
 		echo '<div class="rfc-leftside">';
 		echo '<h2 class="nav-tab-wrapper wp-clearfix">';
 		foreach ( $this->tabs as $tab_id => $tab ) {
