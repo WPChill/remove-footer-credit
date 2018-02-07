@@ -1,7 +1,7 @@
 <?php
 /*
 * Plugin Name: Remove Footer Credit
-* Version: 1.1
+* Version: 1.0.2
 * Description: A simple plugin to remove footer credits
 * Author: Macho Themes
 * Author URI: https://www.machothemes.com/
@@ -48,6 +48,10 @@ class RFC_Plugin {
 			'plugins' => array(
 				'label' => esc_html__( 'Other Great Plugins', 'remove-footer-credit' ),
 				'path' => 'plugins.php',
+			),
+			'help' => array(
+				'label' => esc_html__( 'Get Help', 'remove-footer-credit' ),
+				'path' => 'plugin-info.php',
 			),
 		);
 
@@ -139,29 +143,23 @@ class RFC_Plugin {
 		}
 
 		$current_tab = 'settings';
-		if ( isset($_GET['tab']) && 'plugins' == $_GET['tab'] ) {
-			$current_tab = 'plugins';
+		if ( isset($_GET['tab']) && isset( $this->tabs[ $_GET['tab'] ] ) ) {
+			$current_tab = $_GET['tab'];
 		}
 
-		echo '<div class="wrap">';
-		echo '<div class="about-wrap epsilon-wrap">';
+		echo '<div class="wrap about-wrap epsilon-wrap">';
 		echo '<h1>' . esc_html__( 'Remove Footer Credit', 'remove-footer-credit' ) . '</h1>';
 		echo '<div class="about-text">';
 				/* Translators: Welcome Screen Description. */
 				echo esc_html__( 'Remove or replace footer credits (or any text or HTML in page) before page is rendered. With this plugin there is no need to modify code such as footer.php which if done incorrectly can cause your site to break or new theme updates will stomp over your changes requiring you to remove footer credits on each update.', 'remove-footer-credit' );
 			echo '</div>';
 		echo '<div class="wp-badge remove-footer-credit"><span class="dashicons dashicons-editor-unlink"></span></div>';
-		echo '</div>';
-		echo '<div class="rfc-leftside">';
 		echo '<h2 class="nav-tab-wrapper wp-clearfix">';
 		foreach ( $this->tabs as $tab_id => $tab ) {
 			echo '<a class="nav-tab ' . ( $tab_id === $current_tab ? 'nav-tab-active' : '' ) . '" href="' . esc_url( $this->generate_url( $tab_id ) ) . '">' . esc_html( $tab['label'] ) . '</a>';
 		}
 		echo '</h2>';
 		include 'sections/' . $this->tabs[ $current_tab ]['path'];
-		echo '</div>';
-		echo '<div class="rfc-right-side">';
-		include 'sections/plugin-info.php';
 		echo '</div>';
 
 	}
