@@ -94,7 +94,7 @@ class RFC_Plugin {
 		global $post;
 		$data = get_option( 'jabrfc_text' );
 		if ( $data['willLinkback'] == 'yes' && is_singular() && $data['linkbackPostId'] == $post->ID ) {
-			$content = $content . 'Get WordPress help, plugins, themes and tips at <a href="https://www.machothemes.com?utm_source=remove-footer-credit&utm_medium=front&utm_campaign=credit-link">MachoThemes.com</a>';
+			$content = $content . esc_html__('Get WordPress help, plugins, themes and tips at ','remove-footer-credit'). '<a href="https://www.machothemes.com?utm_source=remove-footer-credit&utm_medium=front&utm_campaign=credit-link">'. esc_html__('MachoThemes.com','remove-footer-credit').'</a>';
 		}
 		return $content;
 	}
@@ -188,6 +188,16 @@ function jabrfc_ob_call( $buffer ) { // $buffer contains entire page
 	return $buffer;
 }
 
+/**
+ * Load plugin textdomain.
+ *
+ * @since 1.0.0
+ */
+function rfc_load_textdomain() {
+	load_plugin_textdomain( 'remove-footer-credit', false, basename( dirname( __FILE__ ) ) . '/languages' );
+}
+
+add_action( 'init', 'rfc_load_textdomain' );
 
 
 
