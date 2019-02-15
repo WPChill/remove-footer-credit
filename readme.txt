@@ -2,7 +2,7 @@
 Contributors: machothemes
 Tags: footer, credit, change, modify, replace, remove, link, HTML, text, remove footer credit
 Requires at least: 4.0
-Tested up to: 4.9
+Tested up to: 5.1
 Stable tag: 1.0.2
 License: GPLv3 or later
 
