@@ -1,31 +1,42 @@
 <?php
-/*
-* Plugin Name: Remove Footer Credit
-* Version: 1.0.2
-* Description: A simple plugin to remove footer credits
-* Author: Macho Themes
-* Author URI: https://www.machothemes.com/
-* License: GPLv3 or later
-* Text Domain: remove-footer-credit
-*/
-
-/*
-Copyright 2017 Macho Themes
-
-This program is free software; you can redistribute it and/or
-modify it under the terms of the GNU General Public License
-as published by the Free Software Foundation; either version 2
-of the License, or (at your option) any later version.
-
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with this program; if not, write to the Free Software
-Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
-*/
+/**
+ * Plugin Name: 			Remove Footer Credit
+ * Description: 			A simple plugin to remove footer credits
+ * Version: 				1.0.4
+ * Author: 					MachoThemes
+ * Author URI: 				https://www.machothemes.com/
+ * Requires: 				4.6 or higher
+ * License: 				GPLv3 or later
+ * License URI:       		http://www.gnu.org/licenses/gpl-3.0.html
+ * Requires PHP: 			5.6
+ * Text Domain: 			remove-footer-credit
+ * Tested up to:            5.2
+ *
+ * Copyright 2016-2017		Joe Bill			joe@upwerd.com
+ * Copyright 2017-2019 		MachoThemes 		office@machothemes.com
+ *
+ * Original Plugin URI: 	https://upwerd.com/remove-footer-credit
+ * Original Author URI: 	https://upwerd.com/
+ * Original Author: 		https://profiles.wordpress.org/upwerd/
+ *
+ * NOTE:
+ * Joe Bill transferred ownership rights on: 11/13/2017 05:12:22 PM when ownership was handed over to MachoThemes
+ * The MachoThemes ownership period started on: 11/13/2017 05:12:23 PM
+ * SVN commit proof of ownership transferral: https://plugins.trac.wordpress.org/changeset/1765266/remove-footer-credit
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License, version 3, as
+ * published by the Free Software Foundation.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+ */
 
 //Exit if accessed directly
 if ( ! defined( 'ABSPATH' ) ) {
@@ -84,11 +95,20 @@ class RFC_Plugin {
 		//Add left menu item in admin
 		add_action( 'admin_menu', array( $this, 'jabrfc_admin_menu' ) );
 
+        add_action('plugins_loaded',array($this,'load_textdomain'));
+
 	}
 
 	private function generate_url( $tab = 'settings' ){
 		return admin_url( 'tools.php?page=remove-footer-credit&tab=' . $tab );
 	}
+
+    /**
+     * Load plugin textdomain
+     */
+    public function load_textdomain(){
+        load_plugin_textdomain( 'remove-footer-credit', false, plugin_dir_path( __FILE__ ). '/languages' );
+    }
 
 	public function jabrfc_the_content( $content ) {
 		global $post;
@@ -188,16 +208,6 @@ function jabrfc_ob_call( $buffer ) { // $buffer contains entire page
 	return $buffer;
 }
 
-/**
- * Load plugin textdomain.
- *
- * @since 1.0.0
- */
-function rfc_load_textdomain() {
-	load_plugin_textdomain( 'remove-footer-credit', false, basename( dirname( __FILE__ ) ) . '/languages' );
-}
-
-add_action( 'init', 'rfc_load_textdomain' );
 
 
 

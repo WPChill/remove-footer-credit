@@ -34,5 +34,14 @@ We are a young team of WordPress aficionados who love building WordPress plugins
 
 == Changelog ==
 
+= 1.0.4 =
+* minor textdomain update
+* version bump
+* translation ready
+* 
+
+= 1.0.3 =
+* minor tweak & version bump
+
 = 1.0 =
 * Initial release.

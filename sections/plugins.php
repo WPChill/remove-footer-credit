@@ -13,18 +13,6 @@ $plugins = array(
 		'more'        => 'https://wordpress.org/plugins/simple-author-box/',
 		'image'       => 'sab.png',
 	),
-	'kiwi-social-share'        => array(
-		'title'       => esc_html__( 'Kiwi Social Share – Social Media Share Buttons & Icons', 'remove-footer-credit' ),
-		'description' => esc_html__( 'This is by far the best & easiest to use WordPress social media share plugin. A WordPress share plugin with custom icons built-in.', 'remove-footer-credit' ),
-		'more'        => 'https://wordpress.org/plugins/kiwi-social-share/',
-		'image'       => 'kiwi.png',
-	),
-	'speed-booster-pack'       => array(
-		'title'       => esc_html__( 'Speed Booster Pack', 'remove-footer-credit' ),
-		'description' => esc_html__( 'Speed Booster Pack is a lightweight, frequently updated, easy to use and well supported plugin which allows you to improve your website’s loading speed.', 'remove-footer-credit' ),
-		'more'        => 'https://wordpress.org/plugins/speed-booster-pack/',
-		'image'       => 'speed.png',
-	),
 );
 
 if ( ! function_exists( 'get_plugins' ) || ! function_exists( 'is_plugin_active' ) ) {
