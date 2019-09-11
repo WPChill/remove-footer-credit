@@ -2,8 +2,8 @@
 Contributors: machothemes, silkalns
 Tags: footer, credit, change, modify, replace, remove, link, HTML, text, remove footer credit
 Requires at least: 4.6
-Tested up to: 5.1
-Stable tag: trunk
+Tested up to: 5.2
+Stable tag: 1.0.4
 Requires PHP: 5.6
 License: GPLv3 or later
 
