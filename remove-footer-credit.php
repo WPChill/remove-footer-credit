@@ -2,7 +2,7 @@
 /**
  * Plugin Name: 			Remove Footer Credit
  * Description: 			A simple plugin to remove footer credits
- * Version: 				1.0.4
+ * Version: 				1.0.5
  * Author: 					MachoThemes
  * Author URI: 				https://www.machothemes.com/
  * Requires: 				4.6 or higher
