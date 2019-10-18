@@ -3,7 +3,7 @@ Contributors: machothemes, silkalns
 Tags: footer, credit, change, modify, replace, remove, link, HTML, text, remove footer credit
 Requires at least: 4.6
 Tested up to: 5.2
-Stable tag: 1.0.4
+Stable tag: 1.0.5
 Requires PHP: 5.6
 License: GPLv3 or later
 
@@ -36,6 +36,9 @@ We are a young team of WordPress aficionados who love building WordPress plugins
 1. Remove footer credit
 
 == Changelog ==
+
+= 1.0.5 =
+* update translation file
 
 = 1.0.4 =
 * minor textdomain update
