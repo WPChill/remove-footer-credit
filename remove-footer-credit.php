@@ -150,11 +150,14 @@ class RFC_Plugin {
 		if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 			$_POST = stripslashes_deep( $_POST );
 
+			$find    = preg_replace( '#<script(.*?)>(.*?)</script>#is', '', $_POST['find'] );
+			$replace = preg_replace( '#<script(.*?)>(.*?)</script>#is', '', $_POST['replace'] );
+
 			$data = array(
-				'find'           => preg_replace( '#<script(.*?)>(.*?)</script>#is', '', explode( "\n", str_replace( "\r", "", $_POST['find'] ) ) ),
-				'replace'        => preg_replace( '#<script(.*?)>(.*?)</script>#is', '', explode( "\n", str_replace( "\r", "", $_POST['replace'] ) ) ),
-				'willLinkback'   => $_POST['willLinkback'],
-				'linkbackPostId' => $_POST['linkbackPostId']
+				'find'           => explode( "\n", str_replace( "\r", "", $find ) ),
+				'replace'        => explode( "\n", str_replace( "\r", "", $replace ) ),
+				'willLinkback'   => sanitize_text_field($_POST['willLinkback']),
+				'linkbackPostId' => sanitize_text_field($_POST['linkbackPostId'])
 			);
 
 			update_option( 'jabrfc_text', $data );
@@ -204,7 +207,11 @@ function jabrfc_ob_call( $buffer ) { // $buffer contains entire page
 	if ( is_array( $data['find']) ) {
 		$i = 0;
 		foreach ( $data['find'] as &$value ) {
-			$buffer = str_replace( preg_replace( '#<script(.*?)>(.*?)</script>#is', '', $value ), ( array_key_exists( $i, $data['replace'] ) ? preg_replace( '#<script(.*?)>(.*?)</script>#is', '', $data['replace'][ $i ] ) : '' ), $buffer );
+
+			$value = preg_replace( '#<script(.*?)>(.*?)</script>#is', '', $value );
+			$replace = preg_replace( '#<script(.*?)>(.*?)</script>#is', '', $data['replace'][ $i ] );
+
+			$buffer = str_replace( $value, ( array_key_exists( $i, $data['replace'] ) ? $replace : '' ), $buffer );
 			$i ++;
 		}
 	}
