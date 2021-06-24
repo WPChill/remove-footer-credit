@@ -32,7 +32,7 @@ This plugin has very minimal options to keep things simple and easier to use. Yo
 
 == Changelog ==
 
-= 1.0.5 - 24.06.2021 =
+= 1.0.6 - 24.06.2021 =
 Fixed: Security issue regarding XSS
 
 = 1.0.5 =
