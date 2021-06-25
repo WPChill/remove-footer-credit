@@ -7,11 +7,29 @@ $plugins = array(
 		'more'        => 'https://wordpress.org/plugins/modula-best-grid-gallery/',
 		'image'       => 'modula.jpg',
 	),
-	'simple-author-box' => array(
-		'title'       => esc_html__( 'Simple Author Box', 'remove-footer-credit' ),
-		'description' => esc_html__( 'Simple Author Box adds a responsive author box at the end of your posts, showing the author name, author gravatar and author description. It also adds over 30 social profile fields on WordPress user profile screen, allowing to display the author social icons.', 'remove-footer-credit' ),
-		'more'        => 'https://wordpress.org/plugins/simple-author-box/',
-		'image'       => 'sab.png',
+	'strong-testimonials' => array(
+		'title'       => esc_html__( 'Strong Testimonials', 'remove-footer-credit' ),
+		'description' => esc_html__( 'Easily collect and display testimonials on your website', 'remove-footer-credit' ),
+		'more'        => 'https://wordpress.org/plugins/strong-testimonials/',
+		'image'       => 'st.png',
+	),
+	'download-monitor' => array(
+		'title'       => esc_html__( 'Download Monitor', 'remove-footer-credit' ),
+		'description' => esc_html__( 'Download Monitor provides an interface for uploading and managing downloadable files (including support for multiple versions), inserting download links into posts, logging downloads and selling downloads!', 'remove-footer-credit' ),
+		'more'        => 'https://wordpress.org/plugins/download-monitor/',
+		'image'       => 'dm.png',
+	),
+	'check-email' => array(
+		'title'       => esc_html__( 'Check & Log Email', 'remove-footer-credit' ),
+		'description' => esc_html__( 'Check & Log email allows you to test if your WordPress installation is sending emails correctly and logs every email.', 'remove-footer-credit' ),
+		'more'        => 'https://wordpress.org/plugins/check-email/',
+		'image'       => 'checkemail.png',
+	),
+	'kb-support' => array(
+		'title'       => esc_html__( 'KB Support – WordPress Help Desk', 'remove-footer-credit' ),
+		'description' => esc_html__( 'KB Support is the ultimate WordPress plugin for providing support and help desk services to your customers.', 'remove-footer-credit' ),
+		'more'        => 'https://wordpress.org/plugins/kb-support/',
+		'image'       => 'kb.png',
 	),
 );
 
