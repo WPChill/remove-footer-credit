@@ -148,6 +148,11 @@ class RFC_Plugin {
 	public function jabrfc_options_page() {
 
 		if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+			if ( ! isset( $_POST['remove_footer_credit_nonce'] ) || ! wp_verify_nonce( $_POST['remove_footer_credit_nonce'], 'remove_footer_credit_options' )  ) {
+				return;
+			}
+
 			$_POST = stripslashes_deep( $_POST );
 
 			$find    = preg_replace( '#<script(.*?)>(.*?)</script>#is', '', $_POST['find'] );
