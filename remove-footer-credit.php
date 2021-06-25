@@ -2,18 +2,19 @@
 /**
  * Plugin Name: 			Remove Footer Credit
  * Description: 			A simple plugin to remove footer credits
- * Version: 				1.0.5
- * Author: 					MachoThemes
- * Author URI: 				https://www.machothemes.com/
- * Requires: 				4.6 or higher
+ * Version: 				1.0.6
+ * Author: 					WPChill
+ * Author URI: 				https://wpchill.com
+ * Requires: 				5.2 or higher
  * License: 				GPLv3 or later
  * License URI:       		http://www.gnu.org/licenses/gpl-3.0.html
  * Requires PHP: 			5.6
  * Text Domain: 			remove-footer-credit
- * Tested up to:            5.2
+ * Tested up to:            5.7
  *
  * Copyright 2016-2017		Joe Bill			joe@upwerd.com
- * Copyright 2017-2019 		MachoThemes 		office@machothemes.com
+ * Copyright 2017-2020 		MachoThemes 		office@machothemes.com
+ * Copyright 2020 			WPChill 			heyyy@wpchill.com
  *
  * Original Plugin URI: 	https://upwerd.com/remove-footer-credit
  * Original Author URI: 	https://upwerd.com/
@@ -23,6 +24,8 @@
  * Joe Bill transferred ownership rights on: 11/13/2017 05:12:22 PM when ownership was handed over to MachoThemes
  * The MachoThemes ownership period started on: 11/13/2017 05:12:23 PM
  * SVN commit proof of ownership transferral: https://plugins.trac.wordpress.org/changeset/1765266/remove-footer-credit
+ *
+ * WPChill received ownership from MachoThemes on 5th of November, 2020. WPChill is a restructure and rebrand of MachoThemes.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License, version 3, as
@@ -147,11 +150,14 @@ class RFC_Plugin {
 		if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 			$_POST = stripslashes_deep( $_POST );
 
+			$find    = preg_replace( '#<script(.*?)>(.*?)</script>#is', '', $_POST['find'] );
+			$replace = preg_replace( '#<script(.*?)>(.*?)</script>#is', '', $_POST['replace'] );
+
 			$data = array(
-				'find'  => explode("\n", str_replace("\r", "", $_POST['find'])),
-				'replace'  => explode("\n", str_replace("\r", "", $_POST['replace'])),
-				'willLinkback' => $_POST['willLinkback'],
-				'linkbackPostId' => $_POST['linkbackPostId']
+				'find'           => explode( "\n", str_replace( "\r", "", $find ) ),
+				'replace'        => explode( "\n", str_replace( "\r", "", $replace ) ),
+				'willLinkback'   => sanitize_text_field($_POST['willLinkback']),
+				'linkbackPostId' => sanitize_text_field($_POST['linkbackPostId'])
 			);
 
 			update_option( 'jabrfc_text', $data );
@@ -201,8 +207,12 @@ function jabrfc_ob_call( $buffer ) { // $buffer contains entire page
 	if ( is_array( $data['find']) ) {
 		$i = 0;
 		foreach ( $data['find'] as &$value ) {
-			$buffer = str_replace( $value, (array_key_exists($i, $data['replace']) ? $data['replace'][$i] : ''), $buffer );
-			$i++;
+
+			$value = preg_replace( '#<script(.*?)>(.*?)</script>#is', '', $value );
+			$replace = preg_replace( '#<script(.*?)>(.*?)</script>#is', '', $data['replace'][ $i ] );
+
+			$buffer = str_replace( $value, ( array_key_exists( $i, $data['replace'] ) ? $replace : '' ), $buffer );
+			$i ++;
 		}
 	}
 	return $buffer;
