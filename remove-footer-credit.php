@@ -2,7 +2,7 @@
 /**
  * Plugin Name: 			Remove Footer Credit
  * Description: 			A simple plugin to remove footer credits
- * Version: 				1.0.6
+ * Version: 				1.0.7
  * Author: 					WPChill
  * Author URI: 				https://wpchill.com
  * Requires: 				5.2 or higher
@@ -149,14 +149,14 @@ class RFC_Plugin {
 
 		if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-			if ( ! isset( $_POST['remove_footer_credit_nonce'] ) || ! wp_verify_nonce( $_POST['remove_footer_credit_nonce'], 'remove_footer_credit_options' )  ) {
+			if ( ! isset( $_POST['remove_footer_credit_nonce'] ) || ! wp_verify_nonce( $_POST['remove_footer_credit_nonce'], 'remove_footer_credit_options' ) ) {
 				return;
 			}
 
 			$_POST = stripslashes_deep( $_POST );
 
-			$find    = preg_replace( '#<script(.*?)>(.*?)</script>#is', '', $_POST['find'] );
-			$replace = preg_replace( '#<script(.*?)>(.*?)</script>#is', '', $_POST['replace'] );
+			$find    = wp_filter_post_kses( $_POST['find'] );
+			$replace = wp_filter_post_kses( $_POST['replace'] );
 
 			$data = array(
 				'find'           => explode( "\n", str_replace( "\r", "", $find ) ),
@@ -210,8 +210,8 @@ function jabrfc_ob_call( $buffer ) { // $buffer contains entire page
 		$i = 0;
 		foreach ( $data['find'] as &$value ) {
 
-			$value = preg_replace( '#<script(.*?)>(.*?)</script>#is', '', $value );
-			$replace = preg_replace( '#<script(.*?)>(.*?)</script>#is', '', $data['replace'][ $i ] );
+			$value   = wp_filter_post_kses( $value );
+			$replace = wp_filter_post_kses( $data['replace'][ $i ] );
 
 			$buffer = str_replace( $value, ( array_key_exists( $i, $data['replace'] ) ? $replace : '' ), $buffer );
 			$i ++;
