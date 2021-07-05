@@ -199,9 +199,6 @@ class RFC_Plugin {
 
 new RFC_Plugin();
 
-
-
-
 /*
 * Apply find and replace rules
 */
@@ -222,10 +219,3 @@ function jabrfc_ob_call( $buffer ) { // $buffer contains entire page
 	}
 	return $buffer;
 }
-
-
-
-
-
-
-
