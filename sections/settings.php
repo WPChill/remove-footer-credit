@@ -5,7 +5,7 @@
 	<?php $linkbackPostId = ""; if ($this->options['linkbackPostId'])  $linkbackPostId = $this->options['linkbackPostId']; ?>
 
 	<h3><?php echo esc_html__('Step 1: Enter text/HTML to remove (one per line)','remove-footer-credit'); ?></h3>
-	<p><textarea name="find" id="find" class="small-text code" rows="6" style="width: 100%;"><?php if ($this->options['find']) echo htmlentities(implode("\n",$this->options['find'])); ?></textarea></p>
+	<p><textarea name="find" id="find" class="small-text code" rows="6" style="width: 100%;"><?php if ($this->options['find']) echo html_entity_decode(implode("\n",$this->options['find'])); ?></textarea></p>
 	<h3><?php echo esc_html__('Step 2: Enter your own footer credit (one per line)','remove-footer-credit'); ?></h3>
 	<?php wp_editor( $replace, 'replace', $settings = array('quicktags' => true, 'wpautop' => false,'editor_height' => '100', 'teeny' => false) ); ?>
 	<h3><?php echo esc_html__('Step 3: Please support my work and spread the word (optional)','remove-footer-credit'); ?></h3>

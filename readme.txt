@@ -3,7 +3,7 @@ Contributors: wpchill, silkalns
 Tags: footer, credit, change, modify, replace, remove, link, HTML, text, remove footer credit
 Requires at least: 5.2
 Tested up to: 5.7
-Stable tag: 1.0.7
+Stable tag: 1.0.8
 Requires PHP: 5.6
 License: GPLv3 or later
 
@@ -32,7 +32,10 @@ This plugin has very minimal options to keep things simple and easier to use. Yo
 
 == Changelog ==
 
-= 1.0.7 - 02.07.2021 =
+= 1.0.8 - 13.07.2021 =
+Fixed: Plugin not replacing credits.
+
+= 1.0.7 - 05.07.2021 =
 Changed: Updated security fixes for XSS
 
 = 1.0.6 - 24.06.2021 =

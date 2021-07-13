@@ -2,7 +2,7 @@
 /**
  * Plugin Name: 			Remove Footer Credit
  * Description: 			A simple plugin to remove footer credits
- * Version: 				1.0.7
+ * Version: 				1.0.8
  * Author: 					WPChill
  * Author URI: 				https://wpchill.com
  * Requires: 				5.2 or higher
@@ -155,8 +155,8 @@ class RFC_Plugin {
 
 			$_POST = stripslashes_deep( $_POST );
 
-			$find    = wp_filter_post_kses( $_POST['find'] );
-			$replace = wp_filter_post_kses( $_POST['replace'] );
+			$find    = jabrfc_kses( $_POST['find'] );
+			$replace = jabrfc_kses( $_POST['replace'] );
 
 			$data = array(
 				'find'           => explode( "\n", str_replace( "\r", "", $find ) ),
@@ -210,12 +210,22 @@ function jabrfc_ob_call( $buffer ) { // $buffer contains entire page
 		$i = 0;
 		foreach ( $data['find'] as &$value ) {
 
-			$value   = wp_filter_post_kses( $value );
-			$replace = wp_filter_post_kses( $data['replace'][ $i ] );
+			$value   = html_entity_decode( jabrfc_kses( $value ) );
+			$replace = html_entity_decode( jabrfc_kses( $data['replace'][ $i ] ) );
 
 			$buffer = str_replace( $value, ( array_key_exists( $i, $data['replace'] ) ? $replace : '' ), $buffer );
 			$i ++;
 		}
 	}
-	return $buffer;
+	return $buffer . $value;
+}
+
+function jabrfc_kses( $string ){
+	$allowed_protocols = wp_allowed_protocols();
+
+	$string = wp_kses_no_null( $string, array( 'slash_zero' => 'keep' ) );
+    $string = wp_kses_normalize_entities( $string );
+    $string = wp_kses_hook( $string, $allowed_html, $allowed_protocols );
+
+    return $string;
 }
