@@ -1,5 +1,5 @@
 <form method="post" action="<?php echo $_SERVER["REQUEST_URI"]; ?>" class="settings-form">
-			
+
 	<?php $replace = ""; if ($this->options['replace'])  $replace = implode("\n",$this->options['replace']); ?>
 	<?php $willLinkback = "no"; if ($this->options['willLinkback'])  $willLinkback = $this->options['willLinkback']; ?>
 	<?php $linkbackPostId = ""; if ($this->options['linkbackPostId'])  $linkbackPostId = $this->options['linkbackPostId']; ?>

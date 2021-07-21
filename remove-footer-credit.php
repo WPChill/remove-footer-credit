@@ -51,7 +51,7 @@ class RFC_Plugin {
 	private $tabs;
 	private $options;
 	private $assets_path;
-	
+
 	function __construct() {
 
 		$this->tabs = array(
@@ -68,8 +68,14 @@ class RFC_Plugin {
 				'path' => 'plugin-info.php',
 			),
 		);
-
+		$options_defaults = array(
+			'replace' => array(),
+			'willLinkback' => 'no',
+			'linkbackPostId' => 'no',
+			'find' => array(),
+		);
 		$this->options = get_option( 'jabrfc_text' );
+		$this->options = wp_parse_args( $this->options, $options_defaults );
 		$this->assets_path = plugin_dir_url( __FILE__ ) . 'assets/';
 
 		$this->public_hooks();
