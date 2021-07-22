@@ -121,7 +121,7 @@ class RFC_Plugin {
 
 	public function jabrfc_the_content( $content ) {
 		global $post;
-		$data = get_option( 'jabrfc_text' );
+		$data = $this->options;
 		if ( $data['willLinkback'] == 'yes' && is_singular() && $data['linkbackPostId'] == $post->ID ) {
 			$content = $content . esc_html__('Get WordPress help, plugins, themes and tips at ','remove-footer-credit'). '<a href="https://www.machothemes.com?utm_source=remove-footer-credit&utm_medium=front&utm_campaign=credit-link">'. esc_html__('MachoThemes.com','remove-footer-credit').'</a>';
 		}
