@@ -31,6 +31,8 @@ This plugin has very minimal options to keep things simple and easier to use. Yo
 1. Remove footer credit
 
 == Changelog ==
+= 1.0.11 - TBA =
+Added: Sanitization and escapes
 
 = 1.0.10 - 20.07.2021 =
 Fixes: PHP error
