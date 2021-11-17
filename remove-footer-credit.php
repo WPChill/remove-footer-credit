@@ -48,7 +48,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 class RFC_Plugin {
 
-	/** Cadasdasdas. */
 	private $tabs;
 	private $options;
 	private $assets_path;
@@ -156,21 +155,22 @@ class RFC_Plugin {
 
 		if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
 
+			//phpcs:ignore
 			if ( ! isset( $_POST['remove_footer_credit_nonce'] ) || ! wp_verify_nonce( $_POST['remove_footer_credit_nonce'], 'remove_footer_credit_options' ) ) {
 				return;
 			}
 
 			$_POST = stripslashes_deep( $_POST );
 
-			$find    = jabrfc_kses( ( isset( $_POST['find'] ) ) ? $_POST['find'] : '' );
+			$find    = jabrfc_kses( ( isset( $_POST['find'] ) ) ? sanitize_text_field( wp_unslash( $_POST['find'] ) ) : '' );
 
-			$replace = jabrfc_kses( ( isset( $_POST['replace'] ) ) ? $_POST['replace'] : '' );
+			$replace = jabrfc_kses( ( isset( $_POST['replace'] ) ) ? sanitize_text_field( wp_unslash( $_POST['replace'] ) ) : '' );
 
 			$data = array(
 				'find'           => explode( '\n', str_replace( '\r', '', $find ) ),
 				'replace'        => explode( '\n', str_replace( '\r', '', $replace ) ),
-				'willLinkback'   => ( isset( $_POST['willLinkback'] ) ) ? sanitize_text_field( $_POST['willLinkback'] ) : '',
-				'linkbackPostId' => ( isset( $_POST['linkbackPostId'] ) ) ? sanitize_text_field( $_POST['linkbackPostId'] ) : '',
+				'willLinkback'   => ( isset( $_POST['willLinkback'] ) ) ? sanitize_text_field( wp_unslash( $_POST['willLinkback'] ) ) : '',
+				'linkbackPostId' => ( isset( $_POST['linkbackPostId'] ) ) ? sanitize_text_field( wp_unslash( $_POST['linkbackPostId'] ) ) : '',
 			);
 
 			update_option( 'jabrfc_text', $data );
@@ -183,7 +183,7 @@ class RFC_Plugin {
 
 		$current_tab = 'settings';
 		if ( isset( $_GET['tab'] ) && isset( $this->tabs[ $_GET['tab'] ] ) ) {
-			$current_tab = sanitize_text_field( $_GET['tab'] );
+			$current_tab = sanitize_text_field( wp_unslash( $_GET['tab'] ) );
 		}
 
 		echo '<div class="wrap about-wrap epsilon-wrap">';
@@ -210,7 +210,7 @@ new RFC_Plugin();
 /*
 * Apply find and replace rules
 */
-function jabrfc_ob_call( $buffer ) { // $buffer contains entire page
+function jabrfc_ob_call( $buffer ) { // $buffer contains entire page.
 
 	$data = get_option( 'jabrfc_text' );
 
