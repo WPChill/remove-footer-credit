@@ -5,7 +5,7 @@
 	<?php $linkbackPostId = ''; if ( $this->options['linkbackPostId'] )  $linkbackPostId = $this->options['linkbackPostId']; ?>
 
 	<h3><?php echo esc_html__( 'Step 1: Enter text/HTML to remove (one per line)', 'remove-footer-credit'); ?></h3>
-	<p><textarea name="find" id="find" class="small-text code" rows="6" style="width: 100%;"><?php if ($this->options['find']) echo htmlentities( implode( "\n", $this->options['find'] ) ); ?></textarea></p>
+	<p><textarea name="find" id="find" class="small-text code" rows="6" style="width: 100%;"><?php if ($this->options['find']) echo esc_textarea( implode( "\n", $this->options['find'] ) ); ?></textarea></p>
 	<h3><?php echo esc_html__( 'Step 2: Enter your own footer credit (one per line)', 'remove-footer-credit'); ?></h3>
 	<?php wp_editor( $replace, 'replace', $settings = array('quicktags' => true, 'wpautop' => false, 'editor_height' => '100', 'teeny' => false ) ); ?>
 	<h3><?php echo esc_html__( 'Step 3: Please support my work and spread the word (optional)', 'remove-footer-credit' ); ?></h3>
@@ -39,13 +39,13 @@
 			<?php if ( sizeof( $posts_array ) > 0 ) { ?>
 				<option disabled><?php echo esc_html__( '-- Posts --', 'remove-footer-credit' ); ?></option>
 				<?php foreach ( $posts_array as $item ) { ?>
-				<option value="<?php echo $item->ID ?>" <?php echo( $linkbackPostId == $item->ID ) ? 'selected=selected' : ''; ?>><?php echo $item->post_title; ?></option>
+				<option value="<?php echo esc_attr( $item->ID ) ?>" <?php echo( $linkbackPostId == $item->ID ) ? 'selected=selected' : ''; ?>><?php echo esc_html( $item->post_title ); ?></option>
 				<?php } ?>
 			<?php } ?>
 			<?php if ( sizeof( $pages_array ) > 0 ) { ?>
 				<option disabled><?php echo esc_html__( '-- Pages --', 'remove-footer-credit' ); ?></option>
 				<?php foreach ( $pages_array as $item ) { ?>
-					<option value="<?php echo $item->ID; ?>" <?php echo( $linkbackPostId == $item->ID ) ? 'selected=selected' : ''; ?>><?php echo $item->post_title; ?></option>
+					<option value="<?php echo esc_attr( $item->ID ); ?>" <?php echo( $linkbackPostId == $item->ID ) ? 'selected=selected' : ''; ?>><?php echo esc_html( $item->post_title ); ?></option>
 				<?php } ?>
 			<?php } ?>
 		</select>
