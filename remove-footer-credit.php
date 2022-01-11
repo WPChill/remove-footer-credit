@@ -2,7 +2,7 @@
 /**
  * Plugin Name:             Remove Footer Credit
  * Description:             A simple plugin to remove footer credits
- * Version:                 1.0.10
+ * Version:                 1.0.11
  * Author:                  WPChill
  * Author URI:              https://wpchill.com
  * Requires:                5.2 or higher
@@ -10,7 +10,7 @@
  * License URI:             http://www.gnu.org/licenses/gpl-3.0.html
  * Requires PHP:            5.6
  * Text Domain:             remove-footer-credit
- * Tested up to:            5.7
+ * Tested up to:            5.8
  *
  * Copyright 2016-2017      Joe Bill            joe@upwerd.com
  * Copyright 2017-2020      MachoThemes         office@machothemes.com
