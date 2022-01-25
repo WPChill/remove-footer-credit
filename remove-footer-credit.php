@@ -2,7 +2,7 @@
 /**
  * Plugin Name:             Remove Footer Credit
  * Description:             A simple plugin to remove footer credits
- * Version:                 1.0.11
+ * Version:                 1.0.12
  * Author:                  WPChill
  * Author URI:              https://wpchill.com
  * Requires:                5.2 or higher
@@ -162,9 +162,10 @@ class RFC_Plugin {
 
 			$_POST = stripslashes_deep( $_POST );
 
-			$find    = jabrfc_kses( ( isset( $_POST['find'] ) ) ? sanitize_text_field( wp_unslash( $_POST['find'] ) ) : '' );
-
-			$replace = jabrfc_kses( ( isset( $_POST['replace'] ) ) ? sanitize_text_field( wp_unslash( $_POST['replace'] ) ) : '' );
+			// Sanitization done inside function jabrfc_kses.
+			$find    = jabrfc_kses( ( isset( $_POST['find'] ) ) ? $_POST['find']  : '' ); //phpcs:ignore
+			// Sanitization done inside function jabrfc_kses.
+			$replace = jabrfc_kses( ( isset( $_POST['replace'] ) ) ? $_POST['replace'] : '' ); //phpcs:ignore
 
 			$data = array(
 				'find'           => explode( '\n', str_replace( '\r', '', $find ) ),
