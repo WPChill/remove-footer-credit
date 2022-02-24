@@ -2,7 +2,7 @@
 /**
  * Plugin Name:             Remove Footer Credit
  * Description:             A simple plugin to remove footer credits
- * Version:                 1.0.12
+ * Version:                 1.0.13
  * Author:                  WPChill
  * Author URI:              https://wpchill.com
  * Requires:                5.2 or higher
@@ -10,7 +10,7 @@
  * License URI:             http://www.gnu.org/licenses/gpl-3.0.html
  * Requires PHP:            5.6
  * Text Domain:             remove-footer-credit
- * Tested up to:            5.8
+ * Tested up to:            5.9
  *
  * Copyright 2016-2017      Joe Bill            joe@upwerd.com
  * Copyright 2017-2020      MachoThemes         office@machothemes.com
@@ -168,8 +168,8 @@ class RFC_Plugin {
 			$replace = jabrfc_kses( ( isset( $_POST['replace'] ) ) ? $_POST['replace'] : '' ); //phpcs:ignore
 
 			$data = array(
-				'find'           => explode( '\n', str_replace( '\r', '', $find ) ),
-				'replace'        => explode( '\n', str_replace( '\r', '', $replace ) ),
+				'find'           => explode( "\n", str_replace( "\r", "", $find ) ),
+				'replace'        => explode( "\n", str_replace( "\r", "", $replace ) ),
 				'willLinkback'   => ( isset( $_POST['willLinkback'] ) ) ? sanitize_text_field( wp_unslash( $_POST['willLinkback'] ) ) : '',
 				'linkbackPostId' => ( isset( $_POST['linkbackPostId'] ) ) ? sanitize_text_field( wp_unslash( $_POST['linkbackPostId'] ) ) : '',
 			);
