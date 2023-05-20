@@ -2,9 +2,9 @@
   "name": "remove-footer-credit",
   "main": "Gruntfile.js",
   "version": "1.0.3",
-  "author": "Colorlib",
+  "author": "WPChill",
   "license": "GPL v3",
-  "repository": "https://github.com/MachoThemes/remove-footer-credit",
+  "repository": "https://github.com/WPChill/remove-footer-credit",
   "devDependencies": {
     "grunt": "^1.0.3",
     "grunt-checktextdomain": "^1.0.0",

@@ -1,10 +1,10 @@
 === Remove Footer Credit ===
 Contributors: wpchill, silkalns
 Tags: footer, credit, change, modify, replace, remove, link, HTML, text, remove footer credit
-Requires at least: 5.2
-Tested up to: 6.0
+Requires at least: 5.9
+Tested up to: 6.2
 Stable tag: 1.0.13
-Requires PHP: 5.6
+Requires PHP: 7.2
 License: GPLv3 or later
 
 Remove or change footer credits or any text or HTML without modifying code.
