@@ -2,7 +2,7 @@
 /**
  * Plugin Name:             Remove Footer Credit
  * Description:             A simple plugin to remove footer credits
- * Version:                 1.0.13
+ * Version:                 1.0.14
  * Author:                  WPChill
  * Author URI:              https://wpchill.com
  * Requires:                5.2 or higher
@@ -212,6 +212,9 @@ function jabrfc_ob_call( $buffer ) // $buffer contains entire page.
 			$replace = '';
 			if ( isset( $data['replace'][ $i ] ) ) {
 				$replace = html_entity_decode( jabrfc_kses( $data['replace'][ $i ] ) );
+				if ( defined( 'DISALLOW_UNFILTERED_HTML' ) && DISALLOW_UNFILTERED_HTML ) {
+					$replace = esc_html( $replace );
+				}
 			}
 
 			// try to replace wihtout html_entity_decode.
