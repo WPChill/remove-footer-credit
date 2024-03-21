@@ -32,6 +32,9 @@ This plugin has very minimal options to keep things simple and easier to use. Yo
 
 == Changelog ==
 
+= 1.0.14 - TBD =
+Fixed: Security update
+
 = 1.0.13 - 24.02.2022 =
 Fixed: Replaceable text new line bug
 

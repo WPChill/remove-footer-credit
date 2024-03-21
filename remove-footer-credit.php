@@ -224,11 +224,8 @@ function jabrfc_ob_call( $buffer ) // $buffer contains entire page.
 }
 
 function jabrfc_kses( $string ): string {
-	$allowed_protocols = wp_allowed_protocols();
-	$allowed_html      = wp_kses_allowed_html( 'post' );
-
 	$string = wp_kses_no_null( $string, [ 'slash_zero' => 'keep' ] );
 	$string = wp_kses_normalize_entities( $string );
 
-	return wp_kses_hook( $string, $allowed_html, $allowed_protocols );
+	return wp_kses_post( $string );
 }
