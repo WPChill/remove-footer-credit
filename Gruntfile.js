@@ -101,8 +101,9 @@ module.exports = function( grunt ) {
 					'!package.json',
 					'!composer.json',
 					'!composer.lock',
+					'!phpcs.xml',
 					'!set_tags.sh',
-					'!remove-footer-credit.zip',
+					'!*.zip',
 					'!nbproject/**'
 				],
 				dest: 'build/'
