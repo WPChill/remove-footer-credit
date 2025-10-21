@@ -236,6 +236,7 @@ function jabrfc_ob_call( $buffer ) {
 
 			// try to replace wihtout html_entity_decode.
 			$buffer = str_replace( $value, $replace, $buffer );
+			$buffer = str_replace( htmlentities( $value, ENT_QUOTES | ENT_HTML5, 'UTF-8' ), $replace, $buffer );
 			$buffer = str_replace( html_entity_decode( $value ), $replace, $buffer );
 		}
 	}
